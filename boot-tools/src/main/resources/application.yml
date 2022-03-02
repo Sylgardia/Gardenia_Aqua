@@ -1,0 +1,27 @@
+#
+## 日志级别
+#logging:
+#  level:
+#    io.swagger.models.parameters.AbstractSerializableParameter: error
+#
+#
+## JWT配置
+#jwt:
+#  # 密匙Key
+#  secret: boot-template
+#  # HeaderKey
+#  tokenHeader: Authorization
+#  # Token前缀
+#  tokenPrefix: Bearer
+#  # 过期时间，单位秒
+#  expiration: 300
+#  # 刷新时间，单位天
+#  refreshTime: 1
+#  # 配置白名单（不需要认证）
+#  antMatchers: /login/**,/category/**,/doc.html,/pro/**,/wxpublic/**
+#
+## WeChat配置
+##wx:
+##  applet:
+##    appId: wxabdfbc7122c4a30b
+##    appSecret: 40f31e1eb6eef9ab9971744bf670df6f

@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zy</groupId>
-        <artifactId>spring-boot-admin</artifactId>
+        <artifactId>spring-boot-template</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>boot-admin-8999</artifactId>
-    <name>boot-admin-8999</name>
+    <artifactId>boot-adminActuator-8999</artifactId>
+    <name>boot-adminActuator-8999</name>
 
     <properties>
         <spring-boot-admin.version>2.6.2</spring-boot-admin.version>
@@ -25,8 +25,8 @@
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-server</artifactId>
         </dependency>
-
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
