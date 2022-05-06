@@ -1,0 +1,13 @@
+spring:
+  application:
+    ## 注册服务名
+    name: admin-actuator
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+
+management:
+  endpoint:
+    health:
+      show-details: always

@@ -25,12 +25,11 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <spring-boot-admin.version>2.6.3</spring-boot-admin.version>
         <junit.version>4.13.2</junit.version>
         <lombok.version>1.18.16</lombok.version>
         <log4j.version>1.2.17</log4j.version>
         <logback-core.version>1.2.3</logback-core.version>
-        <swagger.version>3.0.0</swagger.version>
-        <boot-actuator.version>2.5.6</boot-actuator.version>
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <mysql.version>8.0.26</mysql.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
@@ -39,6 +38,7 @@
         <hutool.version>5.7.22</hutool.version>
         <fastjson.version>1.2.79</fastjson.version>
         <JWT.version>0.9.1</JWT.version>
+        <knife4j.version>3.0.3</knife4j.version>
     </properties>
 
     <dependencies>
@@ -52,30 +52,39 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- 接口文档工具 -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
             <!-- JWT-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${JWT.version}</version>
             </dependency>
-            <!--   swagger-->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>swagger-bootstrap-ui</artifactId>
-                <version>1.9.6</version>
-            </dependency>
-
-            <!--        工具包组件-->
+            <!-- 工具包组件-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -91,11 +100,6 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-actuator</artifactId>
-                <version>${boot-actuator.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
