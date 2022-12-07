@@ -1,6 +1,6 @@
 package com.zy.generator;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * @author 张雨 - 栀

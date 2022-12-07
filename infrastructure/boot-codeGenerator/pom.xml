@@ -20,6 +20,16 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.zy</groupId>
+            <artifactId>boot-tools</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- 接口文档工具 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -31,14 +41,13 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
-        <!--    代码生成器-->
+        <!-- 代码生成器 -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
             <version>3.5.1</version>
         </dependency>
         <!-- Druid 数据源-->
-        <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
@@ -65,11 +74,6 @@
             <!--                    <groupId>org.mybatis</groupId>-->
             <!--                </exclusion>-->
             <!--            </exclusions>-->
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.6.5</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
