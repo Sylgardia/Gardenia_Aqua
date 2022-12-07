@@ -9,16 +9,17 @@
     </parent>
 
     <groupId>com.zy</groupId>
-    <artifactId>spring-boot-template</artifactId>
+    <artifactId>Gardenia_admin</artifactId>
     <version>1.0.0</version>
-    <name>spring-boot-template</name>
+
+    <name>Gardenia_admin</name>
 
     <packaging>pom</packaging>
 
     <modules>
         <module>boot-tools</module>
-        <module>service</module>
         <module>infrastructure</module>
+        <module>zcService</module>
     </modules>
 
     <properties>
