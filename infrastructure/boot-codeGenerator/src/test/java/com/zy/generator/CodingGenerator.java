@@ -26,11 +26,14 @@ public class CodingGenerator {
     private static final String username = "root";
     private static final String password = "EDTeam01!";
 
+    private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator";
+
     @Test
     public void DaoGenerator(){
         // 添加 生成 数据库表
         List<String> tables = new CopyOnWriteArrayList<>();
-        tables.add("wl_advert");
+        tables.add("sp_ship");
+        tables.add("sp_ship_ref");
 
         FastAutoGenerator.create(url, username, password)
                 // 全局配置
@@ -39,7 +42,7 @@ public class CodingGenerator {
                             .enableSwagger()    // 开启 swagger 模式
                             .fileOverride()     // 多次生成文件，覆盖已生成文件
 //                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // 指定输出目录
-                            .outputDir("D:\\Gardenia_ZY\\Spring\\spring-boot-template\\infrastructure\\boot-codeGenerator" + "\\src\\main\\java")    // 指定输出目录
+                            .outputDir(LOCALPATH + "\\src\\main\\java")    // 指定输出目录
                             .dateType(DateType.TIME_PACK)
                             .commentDate("yyyy-MM-dd");
                 })
@@ -52,7 +55,7 @@ public class CodingGenerator {
                             .serviceImpl("service.impl")    // 设置 serviceImpl 包名
                             .mapper("mapper")               // 设置 DAO 层包名
                             .xml("mappers")                 // 设置 mapper 映射文件名， 由于映射文件在resources中，所以需额外配置
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, "D:\\Gardenia_ZY\\Spring\\spring-boot-template\\infrastructure\\boot-codeGenerator" + "\\src\\main\\java\\com\\zy\\generator\\generator\\mapper\\xml")) // 设置 mapperXml 生成路径;
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, LOCALPATH + "\\src\\main\\java\\com\\zy\\generator\\generator\\mapper\\xml")) // 设置 mapperXml 生成路径;
                             .controller("controller")       // 设置 controller 层包名
                             .other("other");
                 })
