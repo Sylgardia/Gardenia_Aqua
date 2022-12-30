@@ -27,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-    private static final String host = "47.100.30.174" ;
+    private static final String host = "" ;
     private static final String port = "3306" ;
     private static final String database = "wuliu_ed" ;
 
