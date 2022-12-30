@@ -3,6 +3,7 @@ package com.zy.generator;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.config.TemplateType;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 import org.junit.Test;
@@ -36,59 +37,77 @@ public class CodingGenerator {
         tables.add("sp_ship_ref");
 
         FastAutoGenerator.create(url, username, password)
-                // 全局配置
+                // Global Configuration
                 .globalConfig(builder -> {
-                    builder.author("zy-栀")      // 设置作者
-                            .enableSwagger()    // 开启 swagger 模式
-                            .fileOverride()     // 多次生成文件，覆盖已生成文件
-//                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // 指定输出目录
-                            .outputDir(LOCALPATH + "\\src\\main\\java")    // 指定输出目录
+                    builder.author("zy-栀")       // Emplace Author
+                            .enableSwagger()     // open swagger Mode
+                            .fileOverride()      // 多次生成文件，覆盖已生成文件
+//                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // Appoint 输出目录
+                            .outputDir(LOCALPATH + "\\src\\main\\java")    // Appoint 输出目录
                             .dateType(DateType.TIME_PACK)
                             .commentDate("yyyy-MM-dd");
                 })
-                // 包配置
+                // Package Configuration
                 .packageConfig(builder -> {
-                    builder.parent("com.zy.generator")      // 设置父包名
-                            .moduleName("generator")        // 设置父包模块名  (以上两个记得修改)
-                            .entity("entity")               // 设置实体包名
-                            .service("service")             // 设置 service 包名
-                            .serviceImpl("service.impl")    // 设置 serviceImpl 包名
-                            .mapper("mapper")               // 设置 DAO 层包名
-                            .xml("mappers")                 // 设置 mapper 映射文件名， 由于映射文件在resources中，所以需额外配置
+                    builder.parent("com.zy.generator")      // Emplace 父包名
+                            .moduleName("generator")        // Emplace 父包模块名  (以上两个记得修改)
+                            .entity("entity")               // Emplace 实体包名
+                            .service("service")             // Emplace  service 包名
+                            .serviceImpl("service.impl")    // Emplace  serviceImpl 包名
+                            .mapper("mapper")               // Emplace  DAO 层包名
+                            .xml("mappers")                 // Emplace  mapper 映射文件名， 由于映射文件在resources中，所以需额外配置
                             .pathInfo(Collections.singletonMap(OutputFile.mapperXml, LOCALPATH + "\\src\\main\\java\\com\\zy\\generator\\generator\\mapper\\xml")) // 设置 mapperXml 生成路径;
-                            .controller("controller")       // 设置 controller 层包名
+                            .controller("controller")       // Emplace  controller 层包名
                             .other("other");
                 })
-                // 策略配置
+                // Tactics Configuration
                 .strategyConfig(builder -> {
-                    builder.addInclude(tables)      // 设置需要生成的表名
+                    builder.addInclude(tables)      // Emplace 需要生成的表名
 //                          .addTablePrefix("p_")   // 过滤表前缀
 
-                            // service 配置策略
+                            // entity Configuration Tactics
+                            .entityBuilder()
+                            .enableLombok()         // open lombok explain
+                            .logicDeleteColumnName("deleted")
+                            .enableTableFieldAnnotation()   // Attribute explain
+
+                            // mapper Configuration Strategy
+                            .mapperBuilder()
+                            .superClass(BaseMapper.class)       // extend Class
+                            .formatMapperFileName("%sMapper")   // dao name
+                            .enableMapperAnnotation()           // open @mapper Annotation
+                            .formatXmlFileName("%sMapper")      // xml name
+
+                            // mapper Configuration Strategy
+                            .mapperBuilder()
+                            .superClass(BaseMapper.class)       // extend Class
+                            .formatMapperFileName("%sMapper")   // dao name
+                            .enableMapperAnnotation()           // open @mapper Annotation
+                            .formatXmlFileName("%sMapper")      // xml name
+
+                            // service Configuration Strategy
                             .serviceBuilder()
                             .formatServiceFileName("%sService")
                             .formatServiceImplFileName("%sServiceImpl")
 
-                            // entity 配置策略
-                            .entityBuilder()
-//                            .enableLombok()       // 开启 lombok 注解
-                            .logicDeleteColumnName("deleted")
-                            .enableTableFieldAnnotation()   // 属性上加说明
-
-                            // controller 配置策略
+                            // controller Configuration Strategy
                             .controllerBuilder()
                             .formatFileName("%sController")
-                            .enableRestStyle()      // 开启 RestController
-
-                            // mapper 配置策略
-                            .mapperBuilder()
-                            .superClass(BaseMapper.class)       // 继承于哪个类？
-                            .formatMapperFileName("%sMapper")   // dao 名
-                            .enableMapperAnnotation()           // 开启 @mapper 注解
-                            .formatXmlFileName("%sMapper");     // xml 名
+                            .enableRestStyle();                 // open RestController
                 })
+                // Template Configuration
+//                .templateConfig(builder -> {
+//                    builder
+//                            .disable(TemplateType.ENTITY)      // stop use config
+//                            .entity("/templates/entity.java")
+//                            .service("/templates/service.java")
+//                            .serviceImpl("/templates/serviceImpl.java")
+//                            .mapper("/templates/mapper.java")
+//                            .mapperXml("/templates/mapper.xml")
+//                            .controller("/templates/controller.java");
+//                })
                 // 引擎配置
-                .templateEngine(new VelocityTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+                .templateEngine(new VelocityTemplateEngine()) // Use Freemarker 引擎模板，默认的是 Velocity 引擎模板
                 .execute();
     }
 

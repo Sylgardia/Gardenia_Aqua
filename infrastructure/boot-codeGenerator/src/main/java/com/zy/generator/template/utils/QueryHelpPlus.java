@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Zheng Jie
+ * @author Gardenia
  * @date 2019-6-4 14:59:48
  */
 @Slf4j
@@ -114,10 +114,8 @@ public class QueryHelpPlus {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-
         return queryWrapper;
     }
-
 
     private static boolean isBlank(final CharSequence cs) {
         int strLen;
@@ -146,7 +144,6 @@ public class QueryHelpPlus {
      * @param para
      *        驼峰命名的字符串
      */
-
     public static String humpToUnderline(String para) {
         StringBuilder sb = new StringBuilder(para);
         int temp = 0;//定位
@@ -160,17 +157,4 @@ public class QueryHelpPlus {
         }
         return sb.toString();
     }
-
-//    public static void main(String[] args) {
-//        QueryWrapper<Paging> query = new QueryWrapper<Paging>();
-//        //query.or();
-//        query.or(wrapper -> wrapper.eq("store_id", 1).or().eq("store_id", 2));
-//        //query.like("a",1);
-//        //query.or();
-//        //query.like("b",2);
-//        //query.and(wrapper->wrapper.eq("c",1));
-//        query.eq("1", 1);
-//
-//        System.out.println(query.getSqlSegment());
-//    }
 }
