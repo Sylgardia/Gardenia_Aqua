@@ -9,11 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <packaging>pom</packaging>
-
     <artifactId>boot-codeGenerator</artifactId>
 
     <properties>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
@@ -23,6 +22,11 @@
             <groupId>com.zy</groupId>
             <artifactId>boot-tools</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
         </dependency>
         <!-- 接口文档工具 -->
         <dependency>

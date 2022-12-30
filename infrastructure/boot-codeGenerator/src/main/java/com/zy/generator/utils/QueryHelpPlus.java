@@ -1,4 +1,4 @@
-package com.zy.generator.template.utils;
+package com.zy.generator.utils;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;

@@ -7,8 +7,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.zy.generator.template.service.BaseService;
-import com.zy.generator.template.web.param.OrderQueryParam;
-import com.zy.generator.template.web.param.QueryParam;
+import com.zy.generator.web.param.OrderQueryParam;
+import com.zy.generator.web.param.QueryParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 

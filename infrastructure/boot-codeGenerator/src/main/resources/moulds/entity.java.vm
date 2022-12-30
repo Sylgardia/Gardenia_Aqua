@@ -11,17 +11,27 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 #end
 #if(${entityLombokModel})
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+#if(${chainModel})
+import lombok.experimental.Accessors;
+#end
 #end
 
 /**
  * @auther ${author}
- * @create ${cfg.dateTime}
+ * @create ${date}
  * @describe $!{table.comment}实体类
  */
 #if(${entityLombokModel})
 @Data
+@ToString
 #end
 @TableName("${table.name}")
+#if(${chainModel})
+@Accessors(chain = true)
+#end
+@EqualsAndHashCode(callSuper = false)
 #if(${swagger2})
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "${entity}对象", description = "$!{table.comment}")
@@ -34,7 +44,7 @@ public class ${entity} extends Model<${entity}> {
 public class ${entity} implements Serializable{
 #end
 
-private static final long serialVersionUID = 1L;
+private static final long serialVersionUID=1L;
 ## ---------- BEGIN 字段循环遍历 ----------
 #foreach($field in ${table.fields})
 
@@ -61,7 +71,7 @@ private static final long serialVersionUID = 1L;
         #end
         ## 普通字段
     #elseif(${field.fill})
-        ## -----  存在字段填充设置  -----
+        ## -----  存在字段填充设置  -----  ##
         #if(${field.convert})
         @TableField(value = "${field.name}", fill = FieldFill.${field.fill})
         #else
@@ -70,6 +80,8 @@ private static final long serialVersionUID = 1L;
     #else
     @TableField("${field.name}")
     #end
+    ##    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+    ##    @DateTimeFormat(pattern="yyyy-MM-dd")
     ## 乐观锁注解
     #if(${versionFieldName}==${field.name})
     @Version
@@ -121,7 +133,7 @@ protected Serializable pkVal(){
     #else
             return null;
     #end
-        }
+}
 
 #end
 #if(!${entityLombokModel})
@@ -136,6 +148,6 @@ public String toString() {
         #end
     #end
         "}";
-        }
+    }
 #end
-        }
+}

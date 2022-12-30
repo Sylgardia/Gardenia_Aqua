@@ -1,4 +1,4 @@
-package com.zy.generator.template.web.vo;
+package com.zy.generator.web.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.baomidou.mybatisplus.core.metadata.IPage;

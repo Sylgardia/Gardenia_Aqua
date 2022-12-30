@@ -1,4 +1,4 @@
-package com.zy.generator.template.web.param;
+package com.zy.generator.web.param;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;

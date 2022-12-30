@@ -6,12 +6,18 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.TemplateType;
+import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
+import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
-import org.junit.Test;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -21,37 +27,36 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-    private static final String host = "47.100.30.174";
-    private static final String port = "3306";
-    private static final String database = "wuliu_ed";
+    private static final String host = "47.100.30.174" ;
+    private static final String port = "3306" ;
+    private static final String database = "wuliu_ed" ;
 
-    private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
-    private static final String username = "root";
-    private static final String password = "EDTeam01!";
+    private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai" ;
+    private static final String username = "root" ;
+    private static final String password = "EDTeam01!" ;
 
-    private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\zy\\infrastructure\\boot-codeGenerator";
+    private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator" ;
 
     public static void main(String[] args) {
         new CodingGenerator().daoGenerator();
     }
 
-//    @Test
-    public void daoGenerator(){
+    public void daoGenerator() {
         // 添加 生成 数据库表
         List<String> tables = new CopyOnWriteArrayList<>();
 //        tables.add("sp_ship");
         tables.add("sp_ship_ref");
 
-        FastAutoGenerator.create(url, username, password)
-                // Global Configuration
-                .globalConfig(builder -> {
-                    builder.author("zy-栀")       // Emplace Author
-                            .enableSwagger()     // open swagger Mode
+                            FastAutoGenerator.create(url, username, password)
+                                    // Global Configuration
+                                    .globalConfig(builder -> {
+                                        builder.author("zy-栀")       // Emplace Author
+                                                .enableSwagger()     // open swagger Mode
                             .fileOverride()      // 多次生成文件，覆盖已生成文件
 //                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // Appoint 输出目录
                             .outputDir(LOCALPATH + "\\src\\main\\java")    // Appoint 输出目录
                             .dateType(DateType.TIME_PACK)
-                            .commentDate("yyyy-MM-dd");
+                            .commentDate("YYYY-MM-DD HH:mm:ss");
                 })
                 // Package Configuration
                 .packageConfig(builder -> {
@@ -106,18 +111,58 @@ public class CodingGenerator {
                 // Template Configuration
                 .templateConfig(builder -> {
                     builder
-//                            .disable(TemplateType.ENTITY)      // stop use config
-                            .entity("/templates/entity.java")
-                            .mapper("/templates/mapper.java")
-                            .mapperXml("/templates/mapper.xml")
-                            .service("/templates/service.java")
-                            .serviceImpl("/templates/serviceImpl.java")
-                            .controller("/templates/controller.java")
+//                            .disable(TemplateType.CONTROLLER)      // stop use config
+                            .entity("/moulds/entity.java")
+                            .mapper("/moulds/mapper.java")
+                            .mapperXml("/moulds/mapper.xml")
+                            .service("/moulds/service.java")
+                            .service("/templates/service.java.vm")
+                            .serviceImpl("/moulds/serviceImpl.java")
+                            .controller("/moulds/controller.java")
                             .build();
                 })
+                // Injection Configuration
+//                .injectionConfig(builder -> builder
+//                        .beforeOutputFile((tableInfo, objectMap) -> {
+//                            System.out.println("tableInfo: " + tableInfo.getEntityName() + " objectMap: " + objectMap.size());
+//                        }) //输出文件之前消费者
+//                        .customMap(Collections.singletonMap("my_field", "自定义配置 Map 对象")) //自定义配置 Map 对象
+//                        .customFile(Collections.singletonMap("query.java", "/templates/query.java.vm")) //自定义配置模板文件
+//                        .build()//加入构建队列
+//                )
                 // 引擎配置
-                .templateEngine(new VelocityTemplateEngine()) // Use Freemarker 引擎模板，默认的是 Velocity 引擎模板
+                .templateEngine(getTemplateEngine()) // Use Freemarker 引擎模板，默认的是 Velocity 引擎模板
                 .execute();
+    }
+
+    /**
+     * 获取 模板引擎
+     *
+     * @return AbstractTemplateEngine
+     */
+    private AbstractTemplateEngine getTemplateEngine() {
+        return new VelocityTemplateEngine();
+    }
+
+    /**
+     * 初始化vm方法
+     */
+    public static void initVelocity() {
+        Properties p = new Properties();
+        try {
+            // 加载classpath目录下的vm文件
+//            p.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+//            p.setProperty("resource.loader.file.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+            p.put("file.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+            // 定义字符集
+//            p.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+            p.setProperty(Velocity.INPUT_ENCODING, "classpath");
+
+            // 初始化 Velocity 引擎，指定配置 Properties
+            Velocity.init(p);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // 处理 all 情况

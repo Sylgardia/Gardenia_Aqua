@@ -1,11 +1,13 @@
 package ${package.Mapper};
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ${package.Entity}.${entity};
 import ${superMapperClassPackage};
+import java.util.List;
 
 /**
  * @auther ${author}
- * @create ${cfg.dateTime}
+ * @create ${date}
  * @describe $!{table.comment}mapper类
  */
 #if(${kotlin})

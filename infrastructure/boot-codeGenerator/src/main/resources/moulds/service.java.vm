@@ -1,11 +1,12 @@
 package ${package.Service};
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
 
 /**
  * @auther ${author}
- * @create ${cfg.dateTime}
+ * @create ${date}
  * @describe $!{table.comment}服务类
  */
 #if(${kotlin})

@@ -1,4 +1,4 @@
-package com.zy.generator.template.web.param;
+package com.zy.generator.web.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
