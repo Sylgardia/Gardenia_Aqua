@@ -32,4 +32,4 @@ hs_err_pid*
 
 ### PROJECTS ###
 *.cmd
-test/
+test

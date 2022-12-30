@@ -27,13 +27,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-    private static final String host = "47.100.30.174" ;
+    private static final String host = "" ;
     private static final String port = "3306" ;
-    private static final String database = "wuliu_ed" ;
+    private static final String database = "" ;
 
     private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai" ;
     private static final String username = "root" ;
-    private static final String password = "EDTeam01!" ;
+    private static final String password = "" ;
 
     private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator" ;
 
@@ -47,11 +47,11 @@ public class CodingGenerator {
 //        tables.add("sp_ship");
         tables.add("sp_ship_ref");
 
-                            FastAutoGenerator.create(url, username, password)
-                                    // Global Configuration
-                                    .globalConfig(builder -> {
-                                        builder.author("zy-栀")       // Emplace Author
-                                                .enableSwagger()     // open swagger Mode
+        FastAutoGenerator.create(url, username, password)
+                // Global Configuration
+                .globalConfig(builder -> {
+                    builder.author("zy-栀")       // Emplace Author
+                            .enableSwagger()     // open swagger Mode
                             .fileOverride()      // 多次生成文件，覆盖已生成文件
 //                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // Appoint 输出目录
                             .outputDir(LOCALPATH + "\\src\\main\\java")    // Appoint 输出目录
@@ -153,7 +153,7 @@ public class CodingGenerator {
             // 加载classpath目录下的vm文件
 //            p.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
 //            p.setProperty("resource.loader.file.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-            p.put("file.resource.loader.class","org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+            p.put("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
             // 定义字符集
 //            p.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
             p.setProperty(Velocity.INPUT_ENCODING, "classpath");

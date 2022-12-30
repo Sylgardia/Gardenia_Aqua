@@ -21,13 +21,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-    private static final String host = "47.100.30.174";
+    private static final String host = "";
     private static final String port = "3306";
-    private static final String database = "wuliu_ed";
+    private static final String database = "";
 
     private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
     private static final String username = "root";
-    private static final String password = "EDTeam01!";
+    private static final String password = "";
 
     private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\zy\\infrastructure\\boot-codeGenerator";
 
