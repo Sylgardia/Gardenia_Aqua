@@ -3,11 +3,13 @@ package ${package.Entity};
 #foreach($pkg in ${table.importPackages})
 import ${pkg};
 #end
+import org.springframework.format.annotation.DateTimeFormat;
 import com.baomidou.mybatisplus.annotation.*;
-#if(${swagger2})
+#if(${swagger})
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonFormat;
 #end
 #if(${entityLombokModel})
 import lombok.Data;
@@ -32,8 +34,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 #end
 @EqualsAndHashCode(callSuper = false)
-#if(${swagger2})
-@JsonInclude(JsonInclude.Include.NON_NULL)
+#if(${swagger})
+##@JsonInclude(JsonInclude.Include.NON_NULL)
 @ApiModel(value = "${entity}对象", description = "$!{table.comment}")
 #end
 #if(${superEntityClass})
@@ -52,7 +54,7 @@ private static final long serialVersionUID=1L;
         #set($keyPropertyName=${field.propertyName})
     #end
     #if("$!field.comment" != "")
-        #if(${swagger2})
+        #if(${swagger})
         @ApiModelProperty(value = "${field.comment}")
         #else
         /**
