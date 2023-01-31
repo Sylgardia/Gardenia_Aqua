@@ -55,7 +55,7 @@ public class MybatisPlusGenerator {
 
     public static final String JDBC_PASSWORD = "123456";
 
-    public static void main(String[] args) {
+    public void test(String[] args) {
 //        String moduleName = scanner("模块名");
 //        String tableName = scanner("表名");
 //        String tablePrefix = scanner("表前缀(无前缀输入#)").replaceAll("#", "");

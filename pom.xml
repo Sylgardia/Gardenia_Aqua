@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>boot-tools</module>
+        <module>gardenia-base</module>
         <module>infrastructure</module>
         <module>zcService</module>
     </modules>
@@ -37,7 +37,7 @@
         <druid.version>1.1.22</druid.version>
         <lombok.version>1.18.22</lombok.version>
         <hutool.version>5.7.22</hutool.version>
-        <fastjson.version>1.2.79</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <JWT.version>0.9.1</JWT.version>
         <knife4j.version>3.0.3</knife4j.version>
     </properties>

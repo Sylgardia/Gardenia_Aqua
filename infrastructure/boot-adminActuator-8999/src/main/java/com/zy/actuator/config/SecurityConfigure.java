@@ -1,4 +1,4 @@
-package com.zy.generator.bootadmin8999.config;
+package com.zy.actuator.config;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.context.annotation.Configuration;

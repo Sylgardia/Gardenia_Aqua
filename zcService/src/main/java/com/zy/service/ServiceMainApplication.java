@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 /**
  * @author zhangyu
  */
-@MapperScan("com.zy.service.mapper")
 @SpringBootApplication
 public class ServiceMainApplication {
     public static void main(String[] args) {

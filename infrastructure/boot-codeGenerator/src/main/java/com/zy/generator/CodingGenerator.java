@@ -27,7 +27,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-    private static final String host = "" ;
+    private static final String host = "47.100.30.174" ;
     private static final String port = "3306" ;
     private static final String database = "wuliu_ed" ;
 
@@ -44,8 +44,7 @@ public class CodingGenerator {
     public void daoGenerator() {
         // 添加 生成 数据库表
         List<String> tables = new CopyOnWriteArrayList<>();
-//        tables.add("sp_ship");
-        tables.add("sp_ship_ref");
+        tables.add("sp_order_complain");
 
         FastAutoGenerator.create(url, username, password)
                 // Global Configuration
@@ -55,7 +54,7 @@ public class CodingGenerator {
                             .fileOverride()      // 多次生成文件，覆盖已生成文件
 //                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // Appoint 输出目录
                             .outputDir(LOCALPATH + "\\src\\main\\java")    // Appoint 输出目录
-                            .dateType(DateType.TIME_PACK)
+                            .dateType(DateType.TIME_PACK)         // ONLY_DATE:java.util.Date    TIME_PACK:LocalDateTime
                             .commentDate("YYYY-MM-DD HH:mm:ss");
                 })
                 // Package Configuration
@@ -79,6 +78,7 @@ public class CodingGenerator {
                             // entity Configuration Tactics
                             .entityBuilder()
                             .enableLombok()                     // open lombok explain
+                            .enableChainModel()
                             .logicDeleteColumnName("del_flag")  // Default deleted attribute
                             .enableTableFieldAnnotation()       // Attribute explain
 
@@ -119,19 +119,21 @@ public class CodingGenerator {
                             .service("/templates/service.java.vm")
                             .serviceImpl("/moulds/serviceImpl.java")
                             .controller("/moulds/controller.java")
+//                            .controller("/templates/controller.java.vm")
+//                            .controller("/templates/entity.java.vm")
                             .build();
                 })
                 // Injection Configuration
 //                .injectionConfig(builder -> builder
 //                        .beforeOutputFile((tableInfo, objectMap) -> {
 //                            System.out.println("tableInfo: " + tableInfo.getEntityName() + " objectMap: " + objectMap.size());
-//                        }) //输出文件之前消费者
+//                        }) // 输出文件之前消费者
 //                        .customMap(Collections.singletonMap("my_field", "自定义配置 Map 对象")) //自定义配置 Map 对象
 //                        .customFile(Collections.singletonMap("query.java", "/templates/query.java.vm")) //自定义配置模板文件
-//                        .build()//加入构建队列
+//                        .build()// 加入构建队列
 //                )
-                // 引擎配置
-                .templateEngine(getTemplateEngine()) // Use Freemarker 引擎模板，默认的是 Velocity 引擎模板
+                // Engine Configuration
+                .templateEngine(getTemplateEngine()) // Use Freemarker Engine   Default Velocity Engine
                 .execute();
     }
 

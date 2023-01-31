@@ -1,4 +1,4 @@
-package com.zy.generator.bootadmin8999;
+package com.zy.actuator;
 
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
