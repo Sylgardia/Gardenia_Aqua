@@ -1,10 +1,10 @@
 package com.zy.generator.utils.query;
 
-import com.zy.generator.utils.ConvertUtils;
+import com.zy.common.utils.ConvertUtils;
 
 /**
  * Query 规则 常量
- * @Author Scott
+ * @Author Gardenia ZY
  * @Date 2019年02月14日
  */
 public enum QueryRuleEnum {

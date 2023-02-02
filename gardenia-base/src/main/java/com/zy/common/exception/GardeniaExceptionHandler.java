@@ -1,6 +1,6 @@
-package com.zy.generator.exception;
+package com.zy.common.exception;
 
-import com.zy.generator.utils.Result;
+import com.zy.common.utils.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 /**
  * 异常处理器
  *
- * @Author scott
+ * @Author Gardenia ZY
  * @Date 2019
  */
 @RestControllerAdvice
@@ -63,7 +63,7 @@ public class GardeniaExceptionHandler {
 	}
 
 	/**
-	 * @Author 政辉
+	 * @Author Gardenia ZY
 	 * @param e
 	 * @return
 	 */

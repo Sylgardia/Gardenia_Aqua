@@ -1,4 +1,4 @@
-package com.zy.generator.constant;
+package com.zy.common.constant;
 
 /**
  * 全局 常量池

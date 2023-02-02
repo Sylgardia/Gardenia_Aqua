@@ -1,7 +1,7 @@
-package com.zy.generator.utils;
+package com.zy.common.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zy.generator.constant.CommonConstant;
+import com.zy.common.constant.CommonConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

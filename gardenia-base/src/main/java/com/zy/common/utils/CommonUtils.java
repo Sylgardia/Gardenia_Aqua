@@ -1,12 +1,10 @@
-package com.zy.generator.utils;
+package com.zy.common.utils;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.toolkit.JdbcUtils;
-import com.zy.generator.constant.CommonConstant;
-import com.zy.generator.constant.DataBaseConstant;
+import com.zy.common.constant.CommonConstant;
+import com.zy.common.constant.DataBaseConstant;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Encoder;
 
 import javax.sql.DataSource;

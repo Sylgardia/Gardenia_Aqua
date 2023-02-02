@@ -1,6 +1,6 @@
 package com.zy.generator.utils.query;
 
-import com.zy.generator.utils.ConvertUtils;
+import com.zy.common.utils.ConvertUtils;
 
 /**
  * 查询链接规则

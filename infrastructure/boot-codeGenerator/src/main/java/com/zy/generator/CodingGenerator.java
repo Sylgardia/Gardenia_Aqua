@@ -27,13 +27,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-    private static final String host = "47.100.30.174" ;
+//    private static final String host = "47.100.30.174" ;
+    private static final String host = "123.60.51.61" ;
     private static final String port = "3306" ;
     private static final String database = "wuliu_ed" ;
 
     private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai" ;
     private static final String username = "root" ;
-    private static final String password = "EDTeam01!" ;
+//    private static final String password = "EDTeam01!" ;
+    private static final String password = "Ld@lanjing-2210" ;
 
     private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator" ;
 
@@ -44,7 +46,7 @@ public class CodingGenerator {
     public void daoGenerator() {
         // 添加 生成 数据库表
         List<String> tables = new CopyOnWriteArrayList<>();
-        tables.add("sp_order_complain");
+        tables.add("sp_feedback_reply");
 
         FastAutoGenerator.create(url, username, password)
                 // Global Configuration
@@ -54,7 +56,7 @@ public class CodingGenerator {
                             .fileOverride()      // 多次生成文件，覆盖已生成文件
 //                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // Appoint 输出目录
                             .outputDir(LOCALPATH + "\\src\\main\\java")    // Appoint 输出目录
-                            .dateType(DateType.TIME_PACK)         // ONLY_DATE:java.util.Date    TIME_PACK:LocalDateTime
+                            .dateType(DateType.ONLY_DATE)         // ONLY_DATE:java.util.Date    TIME_PACK:LocalDateTime
                             .commentDate("YYYY-MM-DD HH:mm:ss");
                 })
                 // Package Configuration

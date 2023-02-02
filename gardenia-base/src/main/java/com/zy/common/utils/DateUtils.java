@@ -1,4 +1,4 @@
-package com.zy.generator.utils;
+package com.zy.common.utils;
 
 import cn.hutool.core.util.RandomUtil;
 import org.springframework.util.StringUtils;

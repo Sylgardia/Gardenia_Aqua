@@ -1,4 +1,4 @@
-package com.zy.generator.utils;
+package com.zy.common.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @Author  张代浩
+ * @Author  Gardenia ZY
  *
  */
 @Slf4j

@@ -1,7 +1,7 @@
 package com.zy.generator.utils;
 
 import cn.hutool.crypto.SecureUtil;
-import com.zy.generator.exception.GardeniaException;
+import com.zy.common.exception.GardeniaException;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * sql注入处理工具类
  *
- * @author zhoujf
+ * @author Gardenia ZY
  */
 @Slf4j
 public class SqlInjectionUtil {

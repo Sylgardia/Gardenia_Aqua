@@ -1,4 +1,4 @@
-package com.zy.generator.utils;
+package com.zy.common.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

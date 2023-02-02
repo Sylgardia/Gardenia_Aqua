@@ -1,4 +1,4 @@
-package com.zy.generator.exception;
+package com.zy.common.exception;
 
 /**
  *
