@@ -48,7 +48,7 @@ class ${table.controllerName}#if(${superControllerClass}) : ${superControllerCla
 
 #else
 #if(${superControllerClass})
-public class ${table.controllerName} extends ${superControllerClass} {
+public class ${table.controllerName} extends ${superControllerClass}<${entity}, ${table.serviceName}> {
 #else
 public class ${table.controllerName} {
 #end

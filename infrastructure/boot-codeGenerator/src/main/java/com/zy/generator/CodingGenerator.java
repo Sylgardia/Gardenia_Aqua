@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
+import com.zy.generator.template.controller.BaseController;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
@@ -37,11 +38,11 @@ public class CodingGenerator {
     //    private static final String password = "EDTeam01!" ;
     private static final String password = "Ld@lanjing-2210";
 
-    private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator";
+    private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator\\";
     private static final String PARENT_NAME = "org.jeecg.modules";
     private static final String MODULE_NAME = "transReq";
 //    private static final String MAPPER_PATH = "\\src\\main\\java\\com\\zy\\generator\\generator\\mapper\\xml";
-    private static final String MAPPER_PATH = "\\src\\main\\java\\org\\jeecg\\modules\\transReq\\mapper\\xml";
+    private static final String MAPPER_PATH = "src\\main\\java\\org\\jeecg\\modules\\transReq\\mapper\\xml";
 
     public static void main(String[] args) {
         new CodingGenerator().daoGenerator();
@@ -113,6 +114,7 @@ public class CodingGenerator {
                             // controller Configuration Strategy
                             .controllerBuilder()
                             .formatFileName("%sController")
+//                            .superClass(BaseController.class)
                             .enableRestStyle();                 // open RestController
                 })
                 // Template Configuration
