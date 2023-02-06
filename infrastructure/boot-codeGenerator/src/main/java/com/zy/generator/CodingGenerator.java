@@ -66,8 +66,8 @@ public class CodingGenerator {
                 })
                 // Package Configuration
                 .packageConfig(builder -> {
-                    builder.parent("com.zy.generator")      // Emplace 父包名
-                            .moduleName("generator")        // Emplace 父包模块名  (以上两个记得修改)
+                    builder.parent(PARENT_NAME)             // Emplace 父包名
+                            .moduleName(MODULE_NAME)        // Emplace 父包模块名  (以上两个记得修改)
                             .entity("entity")               // Emplace 实体包名
                             .service("service")             // Emplace  service 包名
                             .serviceImpl("service.impl")    // Emplace  serviceImpl 包名
