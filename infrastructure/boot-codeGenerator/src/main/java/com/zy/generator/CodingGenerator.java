@@ -27,17 +27,21 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-//    private static final String host = "47.100.30.174" ;
-    private static final String host = "123.60.51.61" ;
-    private static final String port = "3306" ;
-    private static final String database = "wuliu_ed" ;
+    //    private static final String host = "47.100.30.174" ;
+    private static final String host = "123.60.51.61";
+    private static final String port = "3306";
+    private static final String database = "wuliu_ed";
 
-    private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai" ;
-    private static final String username = "root" ;
-//    private static final String password = "EDTeam01!" ;
-    private static final String password = "Ld@lanjing-2210" ;
+    private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
+    private static final String username = "root";
+    //    private static final String password = "EDTeam01!" ;
+    private static final String password = "Ld@lanjing-2210";
 
-    private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator" ;
+    private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator";
+    private static final String PARENT_NAME = "org.jeecg.modules";
+    private static final String MODULE_NAME = "transReq";
+//    private static final String MAPPER_PATH = "\\src\\main\\java\\com\\zy\\generator\\generator\\mapper\\xml";
+    private static final String MAPPER_PATH = "\\src\\main\\java\\org\\jeecg\\modules\\transReq\\mapper\\xml";
 
     public static void main(String[] args) {
         new CodingGenerator().daoGenerator();
@@ -46,7 +50,8 @@ public class CodingGenerator {
     public void daoGenerator() {
         // 添加 生成 数据库表
         List<String> tables = new CopyOnWriteArrayList<>();
-        tables.add("sp_feedback_reply");
+        tables.add("sp_trans_req_incommon");
+        tables.add("sp_trans_req_ext");
 
         FastAutoGenerator.create(url, username, password)
                 // Global Configuration
@@ -68,7 +73,7 @@ public class CodingGenerator {
                             .serviceImpl("service.impl")    // Emplace  serviceImpl 包名
                             .mapper("mapper")               // Emplace  DAO 层包名
                             .xml("mappers")                 // Emplace  mapper 映射文件名， 由于映射文件在resources中，所以需额外配置
-                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, LOCALPATH + "\\src\\main\\java\\com\\zy\\generator\\generator\\mapper\\xml")) // 设置 mapperXml 生成路径;
+                            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, LOCALPATH + MAPPER_PATH)) // intercalate mapperXml 生成路径
                             .controller("controller")       // Emplace  controller 层包名
                             .other("other");
                 })
