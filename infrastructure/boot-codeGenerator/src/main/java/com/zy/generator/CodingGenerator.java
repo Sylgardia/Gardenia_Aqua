@@ -1,5 +1,6 @@
 package com.zy.generator;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -28,21 +29,18 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class CodingGenerator {
 
-    //    private static final String host = "47.100.30.174" ;
-    private static final String host = "123.60.51.61";
+    private static final String host = "127.0.0.1";
     private static final String port = "3306";
-    private static final String database = "wuliu_ed";
+    private static final String database = "cjw_sb";
 
     private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database + "?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai";
     private static final String username = "root";
-    //    private static final String password = "EDTeam01!" ;
-    private static final String password = "Ld@lanjing-2210";
+    private static final String password = "12345678990";
 
     private static final String LOCALPATH = "D:\\Gardenia_ZY\\Spring\\Gardenia_admin\\infrastructure\\boot-codeGenerator\\";
-    private static final String PARENT_NAME = "org.jeecg.modules";
+    private static final String PARENT_NAME = "org.zy.modules";
     private static final String MODULE_NAME = "transReq";
-//    private static final String MAPPER_PATH = "\\src\\main\\java\\com\\zy\\generator\\generator\\mapper\\xml";
-    private static final String MAPPER_PATH = "src\\main\\java\\org\\jeecg\\modules\\transReq\\mapper\\xml";
+    private static final String MAPPER_PATH = "src\\main\\java\\org\\zy\\modules\\transReq\\mapper\\xml";
 
     public static void main(String[] args) {
         new CodingGenerator().daoGenerator();
@@ -51,8 +49,7 @@ public class CodingGenerator {
     public void daoGenerator() {
         // 添加 生成 数据库表
         List<String> tables = new CopyOnWriteArrayList<>();
-        tables.add("sp_trans_req_incommon");
-        tables.add("sp_trans_req_ext");
+        tables.add("sp_tran_req_assigned");
 
         FastAutoGenerator.create(url, username, password)
                 // Global Configuration
@@ -60,7 +57,7 @@ public class CodingGenerator {
                     builder.author("zy-栀")       // Emplace Author
                             .enableSwagger()     // open swagger Mode
                             .fileOverride()      // 多次生成文件，覆盖已生成文件
-//                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // Appoint 输出目录
+//                            .outputDir(System.getProperty("user.dir") + "\\src\\main\\java")    // Appoint Output Dir
                             .outputDir(LOCALPATH + "\\src\\main\\java")    // Appoint 输出目录
                             .dateType(DateType.ONLY_DATE)         // ONLY_DATE:java.util.Date    TIME_PACK:LocalDateTime
                             .commentDate("YYYY-MM-DD HH:mm:ss");
@@ -87,6 +84,7 @@ public class CodingGenerator {
                             .entityBuilder()
                             .enableLombok()                     // open lombok explain
                             .enableChainModel()
+                            .idType(IdType.ASSIGN_ID)           // Different Id Generation Type (AUTO、NONE、INPUT、ASSIGN_UUID、ASSIGN_ID)
                             .logicDeleteColumnName("del_flag")  // Default deleted attribute
                             .enableTableFieldAnnotation()       // Attribute explain
 
@@ -120,16 +118,14 @@ public class CodingGenerator {
                 // Template Configuration
                 .templateConfig(builder -> {
                     builder
-//                            .disable(TemplateType.CONTROLLER)      // stop use config
+                            .disable(TemplateType.CONTROLLER)      // stop use config
                             .entity("/moulds/entity.java")
                             .mapper("/moulds/mapper.java")
                             .mapperXml("/moulds/mapper.xml")
                             .service("/moulds/service.java")
-                            .service("/templates/service.java.vm")
                             .serviceImpl("/moulds/serviceImpl.java")
                             .controller("/moulds/controller.java")
 //                            .controller("/templates/controller.java.vm")
-//                            .controller("/templates/entity.java.vm")
                             .build();
                 })
                 // Injection Configuration
