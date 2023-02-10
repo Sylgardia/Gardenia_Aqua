@@ -49,7 +49,7 @@ public class CodingGenerator {
     public void daoGenerator() {
         // 添加 生成 数据库表
         List<String> tables = new CopyOnWriteArrayList<>();
-        tables.add("sp_tran_req_assigned");
+        tables.add("sp_captain_route");
 
         FastAutoGenerator.create(url, username, password)
                 // Global Configuration

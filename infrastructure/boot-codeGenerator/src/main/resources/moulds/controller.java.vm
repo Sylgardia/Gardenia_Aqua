@@ -85,7 +85,7 @@ public class ${table.controllerName} {
      * @return
      */
     ##  @AutoLog(value = "${tableVo.ftlDescription}-添加")
-    @ApiOperation(value="${tableVo.ftlDescription}-添加", notes="${tableVo.ftlDescription}-添加")
+    @ApiOperation(value="${table.comment}-添加", notes="${table.comment}-添加")
     //@RequiresPermissions("${entityPackage}:${tableName}:add")
     @PostMapping(value = "/add")
     public Result<String> add(@RequestBody ${entity} ${table.entityPath}) {
@@ -153,6 +153,29 @@ public class ${table.controllerName} {
             return Result.error("未找到对应数据");
         }
         return Result.OK(${table.entityPath});
+    }
+
+    /**
+    * 导出excel
+    *
+    * @param request
+    * @param ${entity}
+    */
+    @RequestMapping(value = "/exportXls")
+    public ModelAndView exportXls(HttpServletRequest request, ${entity} ${table.entityPath}) {
+            return super.exportXls(request, ${table.entityPath}, ${entity}.class, "$!{table.comment}");
+    }
+
+    /**
+    * 通过excel导入数据
+    *
+    * @param request
+    * @param response
+    * @return
+    */
+    @RequestMapping(value = "/importExcel", method = RequestMethod.POST)
+    public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
+            return super.importExcel(request, response, ${entity}.class);
     }
 
 }

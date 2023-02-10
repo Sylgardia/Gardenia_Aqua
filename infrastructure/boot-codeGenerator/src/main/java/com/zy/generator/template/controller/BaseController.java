@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 /**
  * @Description: Controller基类
  * @Author: Gardenia ZY
- * @Date: 2019-4-21 8:13
+ * @Date: 2019-9-19 9:13
  * @Version: 1.0
  */
 @Slf4j
@@ -40,12 +40,12 @@ public class BaseController<T, S extends IService<T>> {
     @Value("${gardenia.path.upload}")
     private String upLoadPath;
 
-//    /**
-//     * 导出excel
-//     *
-//     * @param request
-//     */
-//    protected ModelAndView exportXls(HttpServletRequest request, T object, Class<T> clazz, String title) {
+    /**
+     * 导出excel
+     *
+     * @param request
+     */
+    protected ModelAndView exportXls(HttpServletRequest request, T object, Class<T> clazz, String title) {
 //        // Step.1 组装查询条件
 //        QueryWrapper<T> queryWrapper = QueryGenerator.initQueryWrapper(object, request.getParameterMap());
 //
@@ -64,20 +64,21 @@ public class BaseController<T, S extends IService<T>> {
 //
 //        // Step.3 AutoPoi 导出Excel
 //        return this.exportXls(exportList,clazz,title);
-//    }
-//
-//    /**
-//     * 根据每页sheet数量导出多sheet
-//     *
-//     * @param request
-//     * @param object 实体类
-//     * @param clazz 实体类class
-//     * @param title 标题
-//     * @param exportFields 导出字段自定义
-//     * @param pageNum 每个sheet的数据条数
-//     * @param request
-//     */
-//    protected ModelAndView exportXlsSheet(HttpServletRequest request, T object, Class<T> clazz, String title,String exportFields,Integer pageNum) {
+        return null;
+    }
+
+    /**
+     * 根据每页sheet数量导出多sheet
+     *
+     * @param request
+     * @param object 实体类
+     * @param clazz 实体类class
+     * @param title 标题
+     * @param exportFields 导出字段自定义
+     * @param pageNum 每个sheet的数据条数
+     * @param request
+     */
+    protected ModelAndView exportXlsSheet(HttpServletRequest request, T object, Class<T> clazz, String title,String exportFields,Integer pageNum) {
 //        // Step.1 组装查询条件
 //        QueryWrapper<T> queryWrapper = QueryGenerator.initQueryWrapper(object, request.getParameterMap());
 //        LoginUser sysUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
@@ -113,18 +114,20 @@ public class BaseController<T, S extends IService<T>> {
 //        mv.addObject(NormalExcelConstants.FILE_NAME, title); //此处设置的filename无效 ,前端会重更新设置一下
 //        mv.addObject(NormalExcelConstants.MAP_LIST, listMap);
 //        return mv;
-//    }
+            return null;
+    }
 
-//    /**
-//     * 根据权限导出excel，传入导出字段参数
-//     *
-//     * @param request
-//     */
-//    protected ModelAndView exportXls(HttpServletRequest request, T object, Class<T> clazz, String title,String exportFields) {
+    /**
+     * 根据权限导出excel，传入导出字段参数
+     *
+     * @param request
+     */
+    protected ModelAndView exportXls(HttpServletRequest request, T object, Class<T> clazz, String title,String exportFields) {
 //        ModelAndView mv = this.exportXls(request,object,clazz,title);
 //        mv.addObject(NormalExcelConstants.EXPORT_FIELDS,exportFields);
 //        return mv;
-//    }
+        return null;
+    }
 
     /**
      * 获取对象ID
@@ -140,14 +143,14 @@ public class BaseController<T, S extends IService<T>> {
         }
     }
 
-//    /**
-//     * 通过excel导入数据
-//     *
-//     * @param request
-//     * @param response
-//     * @return
-//     */
-//    protected Result<?> importExcel(HttpServletRequest request, HttpServletResponse response, Class<T> clazz) {
+    /**
+     * 通过excel导入数据
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    protected Result<?> importExcel(HttpServletRequest request, HttpServletResponse response, Class<T> clazz) {
 //        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 //        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 //        for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
@@ -198,7 +201,8 @@ public class BaseController<T, S extends IService<T>> {
 //        if (loginUser==null)
 //            throw new JeecgBootException("用户未找到");
 //        return loginUser.getId();
-//    }
+        return null;
+    }
 
     public String getBossId(){
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
