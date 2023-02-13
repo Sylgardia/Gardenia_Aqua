@@ -1,0 +1,134 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  ### 被监控模块配置 ###
+  boot:
+    ## 注册服务名  spring boot admin
+    admin:
+      client:
+        instance:
+          name: service-main
+          service-base-url: http://127.0.0.1:8999
+        url: http://127.0.0.1:8999
+        username: admin
+        password: admin
+
+  ### Sharding Sphere 分库分表
+  shardingsphere:
+    dataSources:
+      server-00:
+        dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://${MYSQL_DB_HOST:127.0.0.1}:3306/cnn_model?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+        username: root
+        password: 151613
+      server-01:
+        dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbcUrl: jdbc:mysql://${MYSQL_DB_HOST:127.0.0.1}:3306/cnn_model?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+        username: root
+        password: 151613
+    # 打印SQl
+    props:
+      sql-show: true
+    rules:
+      # 读写分离配置
+    - !READWRITE_SPLITTING
+      dataSources:
+        readwrite_ds:
+          staticStrategy:
+            writeDataSourceName: server-00
+            readDataSourceNames: server-01
+              - server-01
+          loadBalancerName: random
+      loadBalancers:
+        random:
+          type: RANDOM
+        round:
+          type: ROUND_ROBIN
+        weight:
+          type: WEIGHT
+    # 分片表配置（数据节点配置）
+    - !SHARDING
+      tables:
+        # User 表配置  （分库）
+        sys_user:
+          actualDataNodes: server-0${0..1}.sys_user
+          databaseStrategy:
+            standard:
+              shardingColumn: sex
+              shardingAlgorithmName: sys_user_inline
+        # sys_log 表配置  （分表）
+        sys_log:
+          actualDataNodes: server-00.sys_log_0${0..1}
+          databaseStrategy:
+            standard:
+              shardingColumn: id
+              shardingAlgorithmName: sys_log_inline
+      # 默认分片列名称
+      defaultShardingColumn: id
+      # 绑定表规则列表
+#        bindingTables:
+#          - t_order,t_order_item
+#        broadcastTables:
+#          - t_address
+      # 默认数据库分片策略
+      defaultDatabaseStrategy:
+        none:
+#          standard:
+#            shardingColumn: id
+#            shardingAlgorithmName: database_inline
+      # 默认表分片策略
+      defaultTableStrategy:
+        none:
+      # 分片算法配置 参考：https://shardingsphere.apache.org/document/5.3.0/cn/user-manual/common-config/builtin-algorithm/sharding/
+      shardingAlgorithms:
+        sys_user_inline:
+          type: INLINE
+          props:
+            algorithm-expression: server-0${sex % 2}
+        sys_log_inline:
+          type: HASH_MOD
+          props:
+            sharding-count: 2
+#              algorithm-expression: sys_log_0${id % 2}
+#        keyGenerators:
+#          snowflake:
+#            type: SNOWFLAKE
+#        auditors:
+#          sharding_key_required_auditor:
+#            type: DML_SHARDING_CONDITIONS
+
+
+# 接口文档增强
+knife4j:
+  enable: true
+#  production: true # 开启屏蔽文档资源
+
+#  endpoints config
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
+
+# JWT配置
+jwt:
+  # 密匙Key
+  secret: Template-boot
+  # HeaderKey  Authorization
+  tokenHeader: Token
+  # Token前缀
+  tokenPrefix: Bearer
+  # 过期时间，单位秒
+  expiration: 300
+  # 刷新时间，单位天
+  refreshTime: 1
+  # 配置白名单（不需要认证）
+  antMatchers: /login/**
+

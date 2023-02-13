@@ -10,7 +10,6 @@ import com.zy.generator.template.service.BaseService;
 import com.zy.generator.web.param.OrderQueryParam;
 import com.zy.generator.web.param.QueryParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,16 +50,16 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
         return page;
     }
 
-    protected void getPage(Pageable pageable) {
-        String order = null;
-        if (pageable.getSort() != null) {
-            order = pageable.getSort().toString();
-            order = order.replace(":", "");
-            if ("UNSORTED".equals(order)) {
-                order = "id desc";
-            }
-        }
-        PageHelper.startPage(pageable.getPageNumber() + 1, pageable.getPageSize(), order);
-    }
+//    protected void getPage(Pageable pageable) {
+//        String order = null;
+//        if (pageable.getSort() != null) {
+//            order = pageable.getSort().toString();
+//            order = order.replace(":", "");
+//            if ("UNSORTED".equals(order)) {
+//                order = "id desc";
+//            }
+//        }
+//        PageHelper.startPage(pageable.getPageNumber() + 1, pageable.getPageSize(), order);
+//    }
 
 }

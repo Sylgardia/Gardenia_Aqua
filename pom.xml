@@ -19,7 +19,7 @@
     <modules>
         <module>gardenia-base</module>
         <module>infrastructure</module>
-        <module>zcService</module>
+        <module>gardenia-main-service</module>
     </modules>
 
     <properties>
@@ -31,10 +31,14 @@
         <lombok.version>1.18.16</lombok.version>
         <log4j.version>1.2.17</log4j.version>
         <logback-core.version>1.2.3</logback-core.version>
-        <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <mysql.version>8.0.26</mysql.version>
+        <mybatis-plus.version>3.5.1</mybatis-plus.version>
+        <shardingSphere.version>5.2.1</shardingSphere.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <druid.version>1.1.22</druid.version>
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <spring-data-commons.version>3.0.1</spring-data-commons.version>
+        <druid-boot.version>1.1.22</druid-boot.version>
+        <druid.version>1.2.15</druid.version>
         <lombok.version>1.18.22</lombok.version>
         <hutool.version>5.7.22</hutool.version>
         <fastjson.version>1.2.83</fastjson.version>
@@ -53,6 +57,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Sharding Sphere 分库分表 -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+                <version>${shardingSphere.version}</version>
+            </dependency>
+
             <!-- 接口文档工具 -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
@@ -100,6 +111,11 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
             <dependency>
@@ -117,6 +133,17 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+            <!--  工具 -->
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${spring-data-commons.version}</version>
             </dependency>
             <!-- JSON工具 -->
             <dependency>
