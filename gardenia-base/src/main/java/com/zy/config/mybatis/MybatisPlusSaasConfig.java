@@ -1,25 +1,18 @@
 package com.zy.config.mybatis;
 
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
-import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.LongValue;
-import org.mybatis.spring.annotation.MapperScan;
+import com.zy.common.annotation.MapperScanner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 单数据源配置（gardenia.datasource.open = false时生效）
- * @Author zy
  *
+ * @Author zy
  */
 @Configuration
-@MapperScan(value={"com.zy.service.**.mapper*"})
+@MapperScanner(value = {"${mybatis.mapperScanner.basePackage}"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisPlusSaasConfig {
 
     @Bean

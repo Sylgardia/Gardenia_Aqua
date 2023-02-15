@@ -19,6 +19,11 @@ knife4j:
   enable: true
 #  production: true # 开启屏蔽文档资源
 
+# 动态配置 Mapper (占位符)
+mybatis:
+  mapperScanner:
+    basePackage: com.zy.service.**.mapper*
+
 #  endpoints config
 management:
   endpoint:
