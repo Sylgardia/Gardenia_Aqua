@@ -78,7 +78,7 @@ public class CodingGenerator {
                 // Tactics Configuration
                 .strategyConfig(builder -> {
                     builder.addInclude(tables)      // Emplace 需要生成的表名
-//                          .addTablePrefix("p_")   // 过滤表前缀
+//                          .addTablePrefix("p_")   // filter table prefix
 
                             // entity Configuration Tactics
                             .entityBuilder()
