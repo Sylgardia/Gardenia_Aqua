@@ -57,6 +57,25 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- 集成 PyTorch -->
+            <dependency>
+                <groupId>ai.djl.pytorch</groupId>
+                <artifactId>pytorch-engine</artifactId>
+                <version>0.22.1</version>
+            </dependency>
+            <dependency>
+                <groupId>ai.djl.pytorch</groupId>
+                <artifactId>pytorch-native-cpu-precxx11</artifactId>
+                <classifier>linux-x86_64</classifier>
+                <version>1.9.1</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>ai.djl.pytorch</groupId>
+                <artifactId>pytorch-jni</artifactId>
+                <version>1.13.0-0.20.0</version>
+                <scope>runtime</scope>
+            </dependency>
             <!-- Sharding Sphere 分库分表 -->
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>
